@@ -160,17 +160,13 @@ Other useful flags: `--dirty` (only uncommitted files), `--diff=main` (only chan
 ## Rector
 
 ```bash
-# Check what would change
-vendor/bin/rector process --dry-run --no-progress-bar --no-ansi
-
-# Apply changes
 vendor/bin/rector process --no-progress-bar --no-ansi
 ```
 
 - `--no-progress-bar` — disables progress bar
 - `--no-ansi` — disables colors
 
-Rector's default console output is already decent for AI — it shows unified diffs and applied rule names.
+Rector is best used as a fixer — let it apply changes directly rather than dry-running. Its console output shows unified diffs and applied rule names.
 
 For structured output: `--output-format=json`
 
@@ -204,12 +200,12 @@ Copy this into your project's AGENTS.md or CLAUDE.md:
 ## Running Tools
 
 - Tests: `vendor/bin/phpunit --no-progress --colors=never --display-errors --display-warnings`
-- Tests (single): `vendor/bin/phpunit --no-progress --colors=never --filter=MethodName`
+- Tests (with a filter): `vendor/bin/phpunit --no-progress --colors=never --filter=MethodName`
 - Tests (Pest): `vendor/bin/pest --compact --colors=never`
-- Static analysis: `vendor/bin/phpstan analyse --no-progress --no-ansi --error-format=raw`
+- Static analysis (PHPStan): `vendor/bin/phpstan analyse --no-progress --no-ansi --error-format=raw`
 - Static analysis (Psalm): `vendor/bin/psalm --no-progress --monochrome --show-snippet=false --no-suggestions --output-format=text`
 - Code style check: `vendor/bin/phpcs --report=emacs -q --no-colors`
 - Code style fix (phpcs): `vendor/bin/phpcbf -q --no-colors`
 - Code style fix (php-cs-fixer): `vendor/bin/php-cs-fixer fix --show-progress=none --no-ansi -n`
-- Refactor check: `vendor/bin/rector process --dry-run --no-progress-bar --no-ansi`
+- Refactor: `vendor/bin/rector process --no-progress-bar --no-ansi`
 ```
