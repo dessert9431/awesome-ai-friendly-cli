@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: rvben/rumdl@0.1.0v0
+      - uses: rvben/rumdl@v0.1.57
         with:
           version: latest
           args: check --fix .
