@@ -12,9 +12,9 @@
 | phpcs                           | `--report=emacs -q --no-colors`                                                         |
 | phpcbf                          | `-q --no-colors`                                                                        |
 | PHP-CS-Fixer                    | `--show-progress=none --no-ansi -n`                                                     |
-| Pint                            | No extra flags needed — auto-outputs JSON in non-TTY                                    |
+| Pint                            | `--format agent` (or auto when `CLAUDECODE` env var is set)                             |
 | Rector                          | `--no-progress-bar --no-ansi`                                                           |
-| Composer install/require/update | `-q` (or `--no-progress --no-ansi -n` if you need output)                               |
+| Composer install/require/update | `-q` (errors only) or `--no-progress --no-ansi -n` (clean verbose)                       |
 
 ## PHPUnit
 
@@ -37,12 +37,12 @@ Single test: `vendor/bin/phpunit --no-progress --colors=never --filter=MethodNam
 ./vendor/bin/pest --compact --colors=never
 ```
 
-- `--compact` — condenses output to dot progress (`.` pass, `⨯` fail) instead of listing each test name
+- `--compact` — hides all passing tests; only displays failures, making output focused on actionable errors
 - `--colors=never` — disables colors
 
-Pest always shows code snippets for failures — there's no `--no-snippet` flag. `--compact` only affects the progress display.
+Pest always shows code snippets for failures — there's no `--no-snippet` flag.
 
-[//]: # (> **Note:** `php artisan test --compact` does not reliably pass through to Pest. Use `./vendor/bin/pest` directly.)
+[//]: # (> **Note:** `php artisan test --compact` does not reliably pass `--compact` through to Pest. Use `./vendor/bin/pest` directly.)
 
 ## ParaTest
 
@@ -64,7 +64,7 @@ vendor/bin/phpstan analyse --no-progress --no-ansi --error-format=raw
 - `--no-progress` — disables progress bar
 - `--no-ansi` — disables colors
 
-Other formats: `table` (default, noisy), `json`, `checkstyle`, `github`, `gitlab`, `junit`.
+Other formats: `table` (default, noisy), `json`, `prettyJson`, `checkstyle`, `github`, `gitlab`, `junit`, `teamcity`.
 
 The `raw` format is the most token-efficient — one line per error. Note: PHPStan prints a `Note: Using configuration file...` line to stderr when auto-discovering a config file.
 
@@ -80,9 +80,9 @@ vendor/bin/psalm --no-progress --monochrome --show-snippet=false --no-suggestion
 - `--show-snippet=false` — hides code snippets (saves tokens)
 - `--no-suggestions` — hides fix suggestions
 
-[//]: # (> **Psalm 7+:** Use `--output-format=compact` instead of `text` — it becomes a true one-line-per-error format &#40;[PR #11750]&#40;https://github.com/vimeo/psalm/pull/11750&#41;&#41;. In Psalm 6 and below, `compact` misleadingly renders box-drawing tables.)
-
 Other formats: `compact`, `json`, `by-issue-level`, `github`, `checkstyle`, `emacs`, `sarif`.
+
+[//]: # (> **Psalm 7+:** Use `--output-format=compact` instead of `text` — it becomes a true one-line-per-error format. In Psalm 6 and below, `compact` misleadingly renders box-drawing tables.)
 
 ## PHP_CodeSniffer (phpcs)
 
@@ -142,18 +142,22 @@ The banner (version, runtime, config, cache info) is always printed — there's 
 ## Pint (Laravel)
 
 ```bash
-./vendor/bin/pint --test
+# Check only (no changes applied)
+./vendor/bin/pint --test --format agent
+
+# Fix
+./vendor/bin/pint --format agent
 ```
 
-Pint auto-detects non-TTY environments and switches to compact JSON:
+- `--format agent` — outputs structured JSON, one line per result
+
+Pint auto-activates the agent format when the `CLAUDECODE` or `OPENCODE` env var is set — no flags needed in Claude Code or OpenCode.
 
 ```json
-{"result":"pass","files":[]}
-{"result":"fail","files":[{"path":"file.php","fixers":["braces_position"]}]}
-{"result":"fixed","files":[{"path":"file.php","fixers":["braces_position"]}]}
+{"status":"pass","files":[]}
+{"status":"fail","files":[{"path":"file.php","fixers":["braces_position"]}]}
+{"status":"fixed","files":[{"path":"file.php","fixers":["braces_position"]}]}
 ```
-
-No extra flags needed.
 
 Other useful flags: `--dirty` (only uncommitted files), `--diff=main` (only changed since branch).
 
@@ -166,7 +170,7 @@ vendor/bin/rector process --no-progress-bar --no-ansi
 - `--no-progress-bar` — disables progress bar
 - `--no-ansi` — disables colors
 
-Rector is best used as a fixer — let it apply changes directly rather than dry-running. Its console output shows unified diffs and applied rule names.
+Rector is best used as a fixer — let it apply changes directly. Its console output shows unified diffs and applied rule names. Use `--dry-run` first if running on unfamiliar code.
 
 For structured output: `--output-format=json`
 
@@ -199,6 +203,7 @@ Copy this into your project's AGENTS.md or CLAUDE.md:
 ```markdown
 ## Running Tools
 
+- Install: `composer install -q`
 - Tests: `vendor/bin/phpunit --no-progress --colors=never --display-errors --display-warnings`
 - Tests (with a filter): `vendor/bin/phpunit --no-progress --colors=never --filter=MethodName`
 - Tests (Pest): `vendor/bin/pest --compact --colors=never`
@@ -207,5 +212,6 @@ Copy this into your project's AGENTS.md or CLAUDE.md:
 - Code style check: `vendor/bin/phpcs --report=emacs -q --no-colors`
 - Code style fix (phpcs): `vendor/bin/phpcbf -q --no-colors`
 - Code style fix (php-cs-fixer): `vendor/bin/php-cs-fixer fix --show-progress=none --no-ansi -n`
+- Code style fix (Pint): `./vendor/bin/pint --format agent`
 - Refactor: `vendor/bin/rector process --no-progress-bar --no-ansi`
 ```
