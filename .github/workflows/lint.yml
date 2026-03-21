@@ -17,7 +17,7 @@ jobs:
 
       - uses: rvben/rumdl@v0
         with:
-          args: check --fix .
+          args: --fix .
 
       - name: Commit fixes
         if: github.event_name == 'push'
