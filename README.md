@@ -15,8 +15,8 @@ AI agents don't need progress bars, color codes, banners, or interactive prompts
 - [Node.js](node.md) - npm, npx, yarn, pnpm, eslint, prettier, biome, jest, vitest, mocha, tsc, playwright, cypress
 - [Python](python.md) - pip, uv, poetry, pytest, ruff, mypy, pyright, black, flake8, pylint, isort, bandit, coverage, tox, django, flask
 - [PHP](php.md) - php-cs-fixer, phpcs, phpstan, psalm, phpunit, pest
+- [Go](go.md) - go build, go test, go vet, go mod, golangci-lint, staticcheck, gofmt, goimports, govulncheck
 - [Rust](rust.md) - WIP
-- [Go](go.md) - WIP
 - [Ruby](ruby.md) - WIP
 - [Java](java.md) - WIP
 - [.NET](dotnet.md) - WIP
