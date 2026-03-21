@@ -1,23 +1,5 @@
-WIP
-
 # Rust
 
-## cargo build
+Contributions welcome! See [contributing guidelines](CONTRIBUTING.md).
 
-## cargo test
-
-## cargo clippy
-
-## cargo fmt
-
-## cargo doc
-
-## cargo install
-
-## cargo publish
-
-## rustc
-
-## miri
-
-## cargo-nextest
+Tools to cover (draft list): cargo build, cargo test, cargo clippy, cargo fmt, cargo doc, cargo install, rustc, cargo-nextest.

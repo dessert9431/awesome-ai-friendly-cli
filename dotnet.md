@@ -1,25 +1,5 @@
-WIP
-
 # .NET
 
-## dotnet build
+Contributions welcome! See [contributing guidelines](CONTRIBUTING.md).
 
-## dotnet test
-
-## dotnet publish
-
-## dotnet run
-
-## dotnet restore
-
-## dotnet format
-
-## nuget
-
-## msbuild
-
-## xunit
-
-## nunit
-
-## coverlet
+Tools to cover (draft list): dotnet build, dotnet test, dotnet publish, dotnet format, nuget, msbuild, xunit, nunit, coverlet.
