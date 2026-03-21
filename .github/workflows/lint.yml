@@ -1,0 +1,27 @@
+name: Lint Markdown
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: rvben/rumdl@0.1.0v0
+        with:
+          version: latest
+          args: check --fix .
+
+      - name: Commit fixes
+        if: github.event_name == 'push'
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: "style: auto-fix markdown lint issues"

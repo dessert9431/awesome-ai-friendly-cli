@@ -109,7 +109,7 @@ vendor/bin/phpcbf -q --no-colors
 
 The result summary table is always printed — no flag to suppress it:
 
-```
+```text
 PHPCBF RESULT SUMMARY
 ----------------------------------------------------------------------
 FILE                                                  FIXED  REMAINING
