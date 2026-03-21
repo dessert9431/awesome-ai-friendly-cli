@@ -13,7 +13,7 @@ AI agents don't need progress bars, color codes, banners, or interactive prompts
 ## Ecosystems
 
 - [Node.js](node.md) - npm, npx, yarn, pnpm, eslint, prettier, biome, jest, vitest, mocha, tsc, playwright, cypress
-- [Python](python.md) - WIP
+- [Python](python.md) - pip, uv, poetry, pytest, ruff, mypy, pyright, black, flake8, pylint, isort, bandit, coverage, tox, django, flask
 - [PHP](php.md) - php-cs-fixer, phpcs, phpstan, psalm, phpunit, pest
 - [Rust](rust.md) - WIP
 - [Go](go.md) - WIP
