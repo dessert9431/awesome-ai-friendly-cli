@@ -19,8 +19,8 @@ AI agents don't need progress bars, color codes, banners, or interactive prompts
 - [Rust](rust.md) - cargo build, cargo check, cargo test, cargo clippy, cargo fmt, cargo-nextest, cargo-audit, cargo-deny
 - [Ruby](ruby.md) - bundler, rake, rspec, minitest, rails test, rubocop, standard, sorbet, reek, brakeman, erb_lint
 - [Java](java.md) - maven, gradle, javac, checkstyle, pmd, spotbugs, google-java-format, spotless
-- [Kotlin](kotlin.md) - WIP
-- [Swift](swift.md) - WIP
+- [Kotlin](kotlin.md) - gradle, kotlinc, ktlint, detekt, spotless
+- [Swift](swift.md) - swift build, swift test, xcodebuild, xcbeautify, xcpretty, swiftlint, swiftformat, swift-format, periphery
 - [.NET](dotnet.md) - dotnet build, dotnet test, dotnet publish, dotnet pack, dotnet restore, dotnet format, dotnet-ef, coverlet
 
 ## Common Patterns
