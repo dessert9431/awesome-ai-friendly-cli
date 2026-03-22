@@ -14,7 +14,7 @@
 | PHP-CS-Fixer                    | `--show-progress=none --no-ansi -n`                                                     |
 | Pint                            | `--format agent` (or auto when `CLAUDECODE` env var is set)                             |
 | Rector                          | `--no-progress-bar --no-ansi`                                                           |
-| Composer install/require/update | `-q` (errors only) or `--no-progress --no-ansi -n` (clean verbose)                       |
+| Composer install/require/update | `-q` (silent) or `--no-progress --no-ansi -n` (clean verbose)                              |
 
 ## PHPUnit
 
@@ -25,7 +25,7 @@ vendor/bin/phpunit --no-progress --colors=never --display-errors --display-warni
 - `--no-progress` — removes dot progress indicator (`.FE...`)
 - `--colors=never` — disables ANSI color codes
 - `--display-errors` — shows PHP errors triggered during tests (hidden by default in PHPUnit 10+)
-- `--display-warnings` — shows PHP warnings triggered during tests
+- `--display-warnings` — shows PHP warnings triggered during tests (hidden by default in PHPUnit 10+)
 
 The banner (version, runtime, config path) and footer (time, memory) are always printed — no flag to suppress them. The savings come from eliminating progress dots on large suites.
 
@@ -37,7 +37,7 @@ Single test: `vendor/bin/phpunit --no-progress --colors=never --filter=MethodNam
 ./vendor/bin/pest --compact --colors=never
 ```
 
-- `--compact` — hides all passing tests; only displays failures, making output focused on actionable errors
+- `--compact` — replaces verbose test names with dots; only failures show full details
 - `--colors=never` — disables colors
 
 Pest always shows code snippets for failures — there's no `--no-snippet` flag.
@@ -80,7 +80,7 @@ vendor/bin/psalm --no-progress --monochrome --show-snippet=false --no-suggestion
 - `--show-snippet=false` — hides code snippets (saves tokens)
 - `--no-suggestions` — hides fix suggestions
 
-Other formats: `compact`, `json`, `by-issue-level`, `github`, `checkstyle`, `emacs`, `sarif`.
+Other formats: `compact`, `console`, `json`, `json-summary`, `junit`, `by-issue-level`, `count`, `github`, `checkstyle`, `codeclimate`, `emacs`, `phpstorm`, `pylint`, `sarif`, `sonarqube`, `xml`.
 
 [//]: # (> **Psalm 7+:** Use `--output-format=compact` instead of `text` — it becomes a true one-line-per-error format. In Psalm 6 and below, `compact` misleadingly renders box-drawing tables.)
 
@@ -96,7 +96,7 @@ vendor/bin/phpcs --report=emacs -q --no-colors
 
 Add `-s` to include sniff names (e.g. `PSR12.Files.FileHeader.SpacingAfterBlock`) — useful for agents to look up rules, but doubles line length.
 
-Other formats: `full` (default, box borders), `json`, `summary`, `checkstyle`, `csv`, `diff`, `junit`.
+Other formats: `full` (default, box borders), `json`, `xml`, `summary`, `source`, `checkstyle`, `csv`, `diff`, `junit`, `svnblame`, `gitblame`, `hgblame`, `notifysend`, `performance`.
 
 ## PHP_CodeSniffer auto-fixer (phpcbf)
 
@@ -104,7 +104,7 @@ Other formats: `full` (default, box borders), `json`, `summary`, `checkstyle`, `
 vendor/bin/phpcbf -q --no-colors
 ```
 
-- `-q` — disables progress dots (`F 1 / 1 (100%)`) and time/memory footer
+- `-q` — disables progress dots (`F 1 / 1 (100%)`)
 - `--no-colors` — disables colors (already the default, but explicit is safer)
 
 The result summary table is always printed — no flag to suppress it:
@@ -137,7 +137,7 @@ vendor/bin/php-cs-fixer fix --show-progress=none --no-ansi -n
 - `-n` — no interactive prompts
 - `--diff` — shows unified diff of changes
 
-The banner (version, runtime, config, cache info) is always printed — there's no flag to suppress it. `-q` suppresses ALL output including errors, so don't use it.
+The banner (version, runtime, config, cache info) is always printed — there's no flag to suppress it. `-q` hides everything except fatal errors — style violations produce no output, only an exit code. Use `--show-progress=none` instead.
 
 ## Pint (Laravel)
 
@@ -154,9 +154,9 @@ The banner (version, runtime, config, cache info) is always printed — there's 
 Pint auto-activates the agent format when the `CLAUDECODE` or `OPENCODE` env var is set — no flags needed in Claude Code or OpenCode.
 
 ```json
-{"status":"pass","files":[]}
-{"status":"fail","files":[{"path":"file.php","fixers":["braces_position"]}]}
-{"status":"fixed","files":[{"path":"file.php","fixers":["braces_position"]}]}
+{"result":"pass"}
+{"result":"fail","files":[{"path":"file.php","fixers":["braces_position"]}]}
+{"result":"fixed","files":[{"path":"file.php","fixers":["braces_position"]}]}
 ```
 
 Other useful flags: `--dirty` (only uncommitted files), `--diff=main` (only changed since branch).
@@ -177,7 +177,7 @@ For structured output: `--output-format=json`
 ## Composer
 
 ```bash
-# Minimal output (warnings and errors only)
+# Silent (suppresses all output)
 composer install -q
 
 # Verbose but clean
@@ -190,7 +190,7 @@ composer audit --format=plain --no-ansi
 composer outdated --direct --format=json --no-ansi
 ```
 
-- `-q` — only warnings and errors (suppresses "182 packages looking for funding" noise)
+- `-q` — suppresses all output (errors still surface via non-zero exit code)
 - `--no-progress` — disables download progress bars
 - `-n` — no interactive prompts
 
