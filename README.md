@@ -16,10 +16,12 @@ AI agents don't need progress bars, color codes, banners, or interactive prompts
 - [Python](python.md) - pip, uv, poetry, pytest, ruff, mypy, pyright, black, flake8, pylint, isort, bandit, coverage, tox, django, flask
 - [PHP](php.md) - php-cs-fixer, phpcs, phpstan, psalm, phpunit, pest
 - [Go](go.md) - go build, go test, go vet, go mod, golangci-lint, staticcheck, gofmt, goimports, govulncheck
-- [Rust](rust.md) - WIP
-- [Ruby](ruby.md) - WIP
-- [Java](java.md) - WIP
-- [.NET](dotnet.md) - WIP
+- [Rust](rust.md) - cargo build, cargo check, cargo test, cargo clippy, cargo fmt, cargo-nextest, cargo-audit, cargo-deny
+- [Ruby](ruby.md) - bundler, rake, rspec, minitest, rails test, rubocop, standard, sorbet, reek, brakeman, erb_lint
+- [Java](java.md) - maven, gradle, javac, checkstyle, pmd, spotbugs, google-java-format, spotless
+- [Kotlin](kotlin.md) - WIP
+- [Swift](swift.md) - WIP
+- [.NET](dotnet.md) - dotnet build, dotnet test, dotnet publish, dotnet pack, dotnet restore, dotnet format, dotnet-ef, coverlet
 
 ## Common Patterns
 
