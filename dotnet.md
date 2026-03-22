@@ -213,7 +213,7 @@ Global tool flags:
 - `--output <path>` — output file/directory
 - `--verbosity <level>` — `Quiet`, `Minimal`, `Normal` (default), `Detailed`
 - `--threshold <N>` — fail if coverage below N%
-- Multiple formats: `--format "cobertura,opencover"` (comma-separated)
+- Multiple formats: repeat the flag — `--format cobertura --format opencover`
 
 The `--collect:"XPlat Code Coverage"` approach is the simplest — it outputs Cobertura XML to `TestResults/` with no extra configuration.
 
