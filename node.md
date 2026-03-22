@@ -166,7 +166,7 @@ npx vitest run --reporter=agent --no-color
 
 Single test: `npx vitest run path/to/test.test.ts` or `npx vitest run -t "test name"`
 
-Other reporters: `verbose`, `json`, `junit`, `tap`, `tap-flat`, `github-actions`, `tree`, `html`, `blob`, `hanging-process`.
+Other reporters: `verbose`, `json`, `junit`, `tap`, `tap-flat`, `github-actions`, `tree`, `html` (requires `@vitest/ui`), `blob`, `hanging-process`.
 
 ## mocha
 
@@ -183,7 +183,7 @@ npx mocha --reporter=min --no-color
 
 The default `spec` reporter lists every test name with indentation — verbose but readable. `min` is the most token-efficient.
 
-Other reporters: `spec` (default), `list`, `progress`, `json-stream`, `xunit`.
+Other reporters: `spec` (default), `list`, `progress`, `json-stream`, `tap`, `xunit`.
 
 ## tsc (TypeScript)
 
@@ -213,6 +213,8 @@ npx playwright test --reporter=line
 - `--quiet` — suppresses stdio from test processes (reporter output still prints)
 
 Playwright's `line` reporter is the best balance of info and token efficiency.
+
+Other reporters: `junit`, `null`, `html`, `blob`.
 
 Other useful flags: `--workers=1` (serial execution), `--max-failures=5` (stop after N failures).
 
