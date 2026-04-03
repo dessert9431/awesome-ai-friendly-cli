@@ -68,7 +68,7 @@ Other formats: `table` (default, noisy), `json`, `prettyJson`, `checkstyle`, `gi
 
 The `raw` format is the most token-efficient — one line per error. Note: PHPStan prints a `Note: Using configuration file...` line to stderr when auto-discovering a config file.
 
-**PHPStan 2.x agent detection:** PHPStan 2.x includes an `AgentDetector` that checks for env vars like `CLAUDECODE`, `CURSOR_TRACE_ID`, `OPENCODE`, etc. When detected, it prepends a ~600-byte "Instructions for interpreting errors" preamble and appends `[identifier=...]` to each error line. The preamble is emitted on every run regardless of `--error-format`. The identifiers are useful (they name the specific rule), but the preamble adds fixed overhead per invocation
+**PHPStan 2.x agent detection:** PHPStan 2.x includes an `AgentDetector` that checks for env vars like `CLAUDECODE`, `CURSOR_TRACE_ID`, `OPENCODE`, etc. When detected, it prepends a ~600-byte "Instructions for interpreting errors" preamble and appends `[identifier=...]` to each error line. The preamble is emitted on every run regardless of `--error-format`. The identifiers are useful (they name the specific rule), but the preamble adds fixed overhead per invocation.
 
 ## Psalm
 
@@ -80,7 +80,7 @@ vendor/bin/psalm --no-progress --no-suggestions --output-format=text
 - `--no-progress` — disables progress indicator
 - `--no-suggestions` — hides fix suggestions
 
-Note: `--monochrome` and `--show-snippet=false` are sometimes recommended but have no effect with `--output-format=text` — the `text` format never outputs ANSI colors or code snippets (those only appear in the default `console` format)
+Note: `--monochrome` and `--show-snippet=false` are sometimes recommended but have no effect with `--output-format=text` — the `text` format never outputs ANSI colors or code snippets (those only appear in the default `console` format).
 
 Other formats: `compact`, `console`, `json`, `json-summary`, `junit`, `by-issue-level`, `count`, `github`, `checkstyle`, `codeclimate`, `emacs`, `phpstorm`, `pylint`, `sarif`, `sonarqube`, `xml`.
 
