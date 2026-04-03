@@ -4,7 +4,6 @@
 
 | Tool                            | AI-Friendly Flags                                                                       |
 |---------------------------------|-----------------------------------------------------------------------------------------|
-| [PAO](https://github.com/nunomaduro/pao) | `composer require nunomaduro/pao --dev` — auto-optimizes PHPUnit, Pest, ParaTest |
 | PHPUnit                         | `--no-progress --colors=never --display-errors --display-warnings`                      |
 | Pest                            | `--compact --colors=never`                                                              |
 | ParaTest                        | `--no-progress --colors=never --display-errors --display-warnings`                      |
@@ -19,7 +18,7 @@
 
 ## PAO (Agent-Optimized Output)
 
-[PAO](https://github.com/nunomaduro/pao) auto-detects AI agents (Claude Code, Cursor, Devin, Gemini CLI, etc.) and replaces verbose test output with compact JSON. Works with PHPUnit, Pest, and ParaTest — zero config after install.
+[PAO](https://github.com/nunomaduro/pao) auto-detects AI agents and replaces verbose test output with compact JSON. Works with PHPUnit, Pest, and ParaTest — zero config after install.
 
 ```bash
 composer require nunomaduro/pao:0.x-dev --dev
