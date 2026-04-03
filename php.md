@@ -8,7 +8,7 @@
 | Pest                            | `--compact --colors=never`                                                              |
 | ParaTest                        | `--no-progress --colors=never --display-errors --display-warnings`                      |
 | PHPStan                         | `--no-progress --no-ansi --error-format=raw`                                            |
-| Psalm                           | `--no-progress --monochrome --show-snippet=false --no-suggestions --output-format=text` |
+| Psalm                           | `--no-progress --no-suggestions --output-format=text`                                   |
 | phpcs                           | `--report=emacs -q --no-colors`                                                         |
 | phpcbf                          | `-q --no-colors`                                                                        |
 | PHP-CS-Fixer                    | `--show-progress=none --no-ansi -n`                                                     |
@@ -68,17 +68,19 @@ Other formats: `table` (default, noisy), `json`, `prettyJson`, `checkstyle`, `gi
 
 The `raw` format is the most token-efficient — one line per error. Note: PHPStan prints a `Note: Using configuration file...` line to stderr when auto-discovering a config file.
 
+**PHPStan 2.x agent detection:** PHPStan 2.x includes an `AgentDetector` that checks for env vars like `CLAUDECODE`, `CURSOR_TRACE_ID`, `OPENCODE`, etc. When detected, it prepends a ~600-byte "Instructions for interpreting errors" preamble and appends `[identifier=...]` to each error line in `raw` format. The preamble is emitted on every run regardless of `--error-format`. The identifiers are useful (they name the specific rule), but the preamble adds fixed overhead per invocation.
+
 ## Psalm
 
 ```bash
-vendor/bin/psalm --no-progress --monochrome --show-snippet=false --no-suggestions --output-format=text
+vendor/bin/psalm --no-progress --no-suggestions --output-format=text
 ```
 
 - `--output-format=text` — one error per line: `file:line:col:severity - IssueType: message`
 - `--no-progress` — disables progress indicator
-- `--monochrome` / `-m` — disables colors
-- `--show-snippet=false` — hides code snippets (saves tokens)
 - `--no-suggestions` — hides fix suggestions
+
+Note: `--monochrome` and `--show-snippet=false` are sometimes recommended but have no effect with `--output-format=text` — the `text` format never outputs ANSI colors or code snippets (those only appear in the default `console` format).
 
 Other formats: `compact`, `console`, `json`, `json-summary`, `junit`, `by-issue-level`, `count`, `github`, `checkstyle`, `codeclimate`, `emacs`, `phpstorm`, `pylint`, `sarif`, `sonarqube`, `xml`.
 
@@ -208,7 +210,7 @@ Copy this into your project's AGENTS.md or CLAUDE.md:
 - Tests (with a filter): `vendor/bin/phpunit --no-progress --colors=never --filter=MethodName`
 - Tests (Pest): `vendor/bin/pest --compact --colors=never`
 - Static analysis (PHPStan): `vendor/bin/phpstan analyse --no-progress --no-ansi --error-format=raw`
-- Static analysis (Psalm): `vendor/bin/psalm --no-progress --monochrome --show-snippet=false --no-suggestions --output-format=text`
+- Static analysis (Psalm): `vendor/bin/psalm --no-progress --no-suggestions --output-format=text`
 - Code style check: `vendor/bin/phpcs --report=emacs -q --no-colors`
 - Code style fix (phpcs): `vendor/bin/phpcbf -q --no-colors`
 - Code style fix (php-cs-fixer): `vendor/bin/php-cs-fixer fix --show-progress=none --no-ansi -n`
