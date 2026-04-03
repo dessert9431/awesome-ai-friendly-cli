@@ -68,7 +68,7 @@ Other formats: `table` (default, noisy), `json`, `prettyJson`, `checkstyle`, `gi
 
 The `raw` format is the most token-efficient — one line per error. Note: PHPStan prints a `Note: Using configuration file...` line to stderr when auto-discovering a config file.
 
-**PHPStan 2.x agent detection:** PHPStan 2.x includes an `AgentDetector` that checks for env vars like `CLAUDECODE`, `CURSOR_TRACE_ID`, `OPENCODE`, etc. When detected, it prepends a ~600-byte "Instructions for interpreting errors" preamble and appends `[identifier=...]` to each error line. The preamble is emitted on every run regardless of `--error-format`. The identifiers are useful (they name the specific rule), but the preamble adds fixed overhead per invocation.
+**PHPStan 2.x agent detection:** PHPStan 2.x includes an `AgentDetector` that checks for env vars like `CLAUDECODE`, `CURSOR_TRACE_ID`, `OPENCODE`, etc. When detected, it prepends a ~600-byte "Instructions for interpreting errors" preamble and appends `[identifier=...]` to each error line in `raw` format. The preamble is emitted on every run regardless of `--error-format`. The identifiers are useful (they name the specific rule), but the preamble adds fixed overhead per invocation.
 
 ## Psalm
 
