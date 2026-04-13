@@ -16,6 +16,27 @@
 | Rector                          | `--no-progress-bar --no-ansi`                                                           |
 | Composer install/require/update | `-q` (silent) or `--no-progress --no-ansi -n` (clean verbose)                              |
 
+## PAO (Agent-Optimized Output)
+
+[PAO](https://github.com/nunomaduro/pao) auto-detects AI agents and replaces verbose test output with compact JSON. Works with PHPUnit, Pest, and ParaTest — zero config after install.
+
+```bash
+composer require nunomaduro/pao:0.x-dev --dev
+```
+
+Output is constant at ~20 tokens regardless of test suite size:
+
+```json
+{"result":"passed","tests":1002,"passed":1002,"duration_ms":321}
+```
+
+| Runner  | Without PAO  | With PAO | Reduction |
+|---------|-------------|----------|-----------|
+| PHPUnit | 336 tokens  | 20 tokens | 94%      |
+| Pest    | 10,123 tokens | 20 tokens | 99.8%  |
+
+If you use PAO, you don't need the manual PHPUnit/Pest/ParaTest flags below — PAO handles it automatically. The flags are still documented for projects that can't add a dependency.
+
 ## PHPUnit
 
 ```bash
